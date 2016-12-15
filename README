@@ -37,6 +37,10 @@ SWAP-Assembler only receive one file in fasta format.
 All input files in fastq format should be first transformated to fasta files, 
 and then combine all these files into one file in fasta format. 
 
+Users is suggested to use the script in utils to generate a simulated data named 
+as ecoli.fa to test our software. To do this just use the following command:
+	./utils/gen_test_reads.sh 
+
 
 Running SWAP-Assembler on a cluster
 ===================================
@@ -47,9 +51,9 @@ such as:
  * Portable Batch System (PBS)
  * Load Sharing Facility (LSF)
 
-For example, to assemble a S.aureus dataset in S.aureus.fasta with the kmer length of 31 
+For example, to assemble a ecoli dataset in ecoli.fa with the kmer length of 31 
 and cutoff threshold of 5 using 64 processes:
-        mpirun -np 64 ./swap -k 31 -c 5 -i ./data/S.aureus.fasta -o Saur_k31_c5 
+        mpirun -np 64 ./swap -k 31 -c 5 -i ./utils/ecoli.fa -o Ecoli_k31_c5 
 
 
 Assembly Parameters
@@ -139,7 +143,7 @@ from 3 to 7.
     for k in 19 21 23 25 27 29 31; do
         for c in 3 4 5 6 7; do
             echo "k is $k, c is $c"
-            mpirun -np 32 ./swap -k $k -c $c -i ./data/S.aureus.fasta -o Saur_k${k}_c${c}
+            mpirun -np 32 ./swap -k $k -c $c -i ./utils/ecoli.fa -o Ecoli_k${k}_c${c}
         done
     done
 

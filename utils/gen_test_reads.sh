@@ -22,6 +22,13 @@ wgsim -N 1000000 -1 75 -2 75 -e 0.01 -r 0.001 ref.fa read1.fq read2.fq
 # -e  base error rate (i.e. sequencing error).
 # -r  mutation rate. This instructs how the resulting data will be different from the original reference. 0.001 means there will be 1 mutation in every 1000 base.
 
-################################################################
+# Translate the data from fastq to fasta
+perl ../fastq2fasta.pl -a read1.fq
+perl ../fastq2fasta.pl -a read2.fq
+
+#combine two fastq files into one file 
+cat read1.fa read2.fa > ../ecoli.fa 
+rm read1.fa read2.fa
+###############################################################
 
 
